@@ -61,3 +61,4 @@ void delete_mid(NODE* node_to_del)
     node_to_del->next = next_node->next;
     free(next_node);
 }
+
