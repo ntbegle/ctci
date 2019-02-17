@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "ch3.h"
 //#include "stack.h"
@@ -36,4 +37,47 @@ int min_pop(MinStack* s)
 int get_min(MinStack* s)
 {
     return s->head->min;
+}
+
+
+void set_push(SetOfStacks* sos, int val)
+{   
+    int stack_idx;
+    for(stack_idx=0; stack_idx < MAX_STACKS; ++stack_idx)
+    {
+        if(sos->sizes[stack_idx] < MAX_STACK_SIZE)
+        {
+            break;
+        }
+    }
+
+    if(stack_idx == MAX_STACKS)
+    {
+        printf("Max number of elements reached in stacks\n");
+        return;
+    }
+
+    push(sos->stacks[stack_idx], val);
+    ++sos->sizes[stack_idx];
+}
+
+int set_pop(SetOfStacks* sos)
+{
+    int stack_idx;
+    for(stack_idx=0; stack_idx < MAX_STACKS; ++stack_idx)
+    {
+        if(sos->sizes[stack_idx] < MAX_STACK_SIZE)
+        {
+            break;
+        }
+    }
+
+    if(stack_idx != 0 && (stack_idx == MAX_STACKS || sos->sizes[stack_idx] == 0))
+    {
+        --stack_idx;
+    }
+
+    --sos->sizes[stack_idx];
+
+    return pop(sos->stacks[stack_idx]);
 }

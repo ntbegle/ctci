@@ -6,7 +6,7 @@ typedef struct stack_node
 {
     int val;
     struct stack_node* next;
-} StackNode
+} StackNode;
 
 typedef struct stack
 {
