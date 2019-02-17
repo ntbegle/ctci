@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"
 #include "ch3.h"
 
 void print_stack(Stack* s)

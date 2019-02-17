@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ch3.h"
-//#include "stack.h"
-//#include "queue.h"
 
 
 void min_push(MinStack* s, int val)
