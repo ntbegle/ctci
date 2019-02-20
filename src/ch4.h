@@ -1,4 +1,5 @@
 
-#include "graph.h"
+#include "linked_list.h"
+#include "binary_tree.h"
 
-bool route_between_nodes(Graph* g);
+void list_of_depths(SinglyList* lists, BinaryTree* bt);
