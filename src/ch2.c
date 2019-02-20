@@ -6,21 +6,21 @@
 
 //1->2->5->1->2
 
-void remove_dups(NODE* head)
+void remove_dups(ListNode* head)
 {
     if(head == NULL)
         return;
 
-    NODE* cur_node = head;
+    ListNode* cur_node = head;
     while(cur_node != NULL)
     {
-        NODE* other_node = cur_node;
+        ListNode* other_node = cur_node;
         while(other_node != NULL && other_node->next != NULL)
         {
             if(cur_node->val == other_node->next->val)
             {
                 printf("removing: %d\n", other_node->next->val);
-                NODE* temp_node = other_node->next;
+                ListNode* temp_node = other_node->next;
                 other_node->next = other_node->next->next;
                 free(temp_node);
             }
@@ -34,9 +34,9 @@ void remove_dups(NODE* head)
 }
 
 
-NODE* kth_last(NODE* head, int k)
+ListNode* kth_last(ListNode* head, int k)
 {
-    NODE* trail_node = head;
+    ListNode* trail_node = head;
 
     while(head != NULL)
     {
@@ -54,9 +54,9 @@ NODE* kth_last(NODE* head, int k)
     return trail_node;
 }
 
-void delete_mid(NODE* node_to_del)
+void delete_mid(ListNode* node_to_del)
 {
-    NODE* next_node = node_to_del->next;
+    ListNode* next_node = node_to_del->next;
     node_to_del->val = next_node->val;
     node_to_del->next = next_node->next;
     free(next_node);

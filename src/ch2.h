@@ -4,11 +4,11 @@
 
 #include "linked_list.h"
 
-void remove_dups(NODE* head);
+void remove_dups(ListNode* head);
 
-NODE* kth_last(NODE* head, int k);
+ListNode* kth_last(ListNode* head, int k);
 
-void delete_mid(NODE* node_to_del);
+void delete_mid(ListNode* node_to_del);
 
 
 #endif
