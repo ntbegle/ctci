@@ -88,3 +88,19 @@ BinaryTree* bt_create_minimal_bst(int* sorted_vals, int num_vals)
     bt->head = bt_create_minimal_bst_recurse(sorted_vals, 0, num_vals - 1);
     return bt;
 }
+
+void bt_free_node(BinaryTreeNode* node)
+{
+    free(node);
+    node = NULL;
+}
+
+void bt_free(BinaryTree* bt)
+{
+    if(bt == NULL)
+        return;
+
+    bt_visit_post_order(bt, &bt_free_node);
+    free(bt);
+    bt = NULL;
+}
