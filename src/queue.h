@@ -4,8 +4,8 @@
 
 typedef struct queue_node
 {
-    int val;
-    struct queue_node next;
+    void* val;
+    struct queue_node* next;
 }QueueNode;
 
 typedef struct queue
@@ -14,8 +14,8 @@ typedef struct queue
     QueueNode* tail;
 } Queue;
 
-void add(Queue* q, int val);
-
-int remove(Queue* q);
+void queue_init(Queue* q);
+void queue_add(Queue* q, void* val);
+void* queue_remove(Queue* q);
 
 #endif

@@ -1,22 +1,45 @@
 
+#include <stdlib.h>
 #include "queue.h"
 
-//1->2->3
+void queue_init(Queue* q)
+{
+    q->head = NULL;
+    q->tail = NULL;
+}
 
-void add(Queue* q, int val)
+void queue_add(Queue* q, void* val)
 {
     QueueNode* new_node = (QueueNode*) malloc(sizeof(QueueNode));
     new_node->val = val;
     new_node->next = NULL;
-    q->tail->next = new_node;
-    q->tail = new_node;
+
+    if(q->tail == NULL)
+    {
+        q->tail = new_node;
+        q->head = new_node;
+    }
+    else
+    {
+        q->tail->next = new_node;
+        q->tail = new_node;
+    }
 }
 
-int remove(Queue* q)
+void* queue_remove(Queue* q)
 {
-    int val = q->head->val;
+    if(q->head == NULL)
+        return NULL;
+
+    void* val = q->head->val;
     QueueNode* temp_node = q->head;
     q->head = q->head->next;
     free(temp_node);
+
+    if(q->head == NULL)
+    {
+        q->tail = NULL;
+    }
+
     return val;
 }

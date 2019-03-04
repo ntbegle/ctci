@@ -12,16 +12,17 @@ void graph_init(Graph* g)
 GraphNode* graph_init_node(int val)
 {
     GraphNode* new_node = (GraphNode*) malloc(sizeof(GraphNode));
-    new_node->num_neighbors = 0;
     new_node->val = val;
     new_node->is_visited = false;
+    new_node->num_incoming = 0;
+    ll_init(&new_node->neighbors);
 
     return new_node;
 }
 
 void graph_add_neighbor(GraphNode* gn, GraphNode* neighbor)
 {
-    gn->neighbors[gn->num_neighbors++] = neighbor;
+    ll_push_back(&gn->neighbors, (void*) neighbor);
 }
 
 void graph_reset_dfs(GraphNode* gn)
@@ -33,9 +34,11 @@ void graph_reset_dfs(GraphNode* gn)
 
     gn->is_visited = false;
     
-    for(int i=0; i < gn->num_neighbors; ++i)
+    ListNode* cur_neighbor = gn->neighbors.head;
+    while(cur_neighbor != NULL)
     {
-        graph_reset_dfs(gn->neighbors[i]);
+        graph_reset_dfs((GraphNode*) cur_neighbor->val);
+        cur_neighbor = cur_neighbor->next;
     }
 }
 
@@ -52,15 +55,18 @@ GraphNode* graph_dfs(GraphNode* gn, int search_val)
         return gn;
     }
 
-    for(int i=0; i < gn->num_neighbors; ++i)
+    
+    ListNode* cur_neighbor = gn->neighbors.head;
+    while(cur_neighbor != NULL)
     {
-        GraphNode* fgn = graph_dfs(gn->neighbors[i], search_val);
+        GraphNode* fgn = graph_dfs((GraphNode*) cur_neighbor->val, search_val);
+        cur_neighbor = cur_neighbor->next;
         if(fgn != NULL)
         {
             return fgn;
         }
     }
-
+    
     return NULL;
 }
 
@@ -75,6 +81,18 @@ bool graph_has_path_dfs(GraphNode* start, int val)
     graph_reset_dfs(start);
 
     return found_node != NULL && found_node->val == val;
+}
+
+void graph_reset_visited(Graph* g)
+{
+    if(g == NULL)
+        return;
+
+    for(ListIter iter = ll_init_iter(&g->nodes); iter != NULL; iter = ll_next_iter(iter))
+    {
+        GraphNode* node = (GraphNode*) iter->val;
+        node->is_visited = false;
+    }
 }
 
 bool graph_node_cmp(void* v1, void* v2)
@@ -119,7 +137,7 @@ Graph graph_from_file(char* filename)
 
         // add all the neighbors of current node
         tok = strtok(NULL, ",");
-        for(int i=0; i < MAX_NUM_NEIGHBORS && tok != NULL; ++i)
+        while(tok != NULL)
         {
             int neighbor_val = atoi(tok);
             //check if neighbor exists already 
@@ -130,7 +148,7 @@ Graph graph_from_file(char* filename)
                 ll_push_back(&g.nodes, (void*)neighbor_node);
             }
 
-            //add neighbor node to neighbors array
+            //add neighbor node to neighbors list
             graph_add_neighbor(cur_node, neighbor_node);
 
             tok = strtok(NULL, ",");
