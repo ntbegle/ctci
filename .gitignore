@@ -6,7 +6,7 @@
 *.ko
 *.obj
 *.elf
-*/obj/*
+**/obj
 
 # Linker output
 *.ilk
@@ -22,7 +22,7 @@
 *.a
 *.la
 *.lo
-*/lib/*
+**/lib
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -37,7 +37,7 @@
 *.i*86
 *.x86_64
 *.hex
-*/bin/*
+**/bin
 
 # Debug files
 *.dSYM/
