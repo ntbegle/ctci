@@ -13,7 +13,7 @@ int main(int argc, char** argv)
     string test_case_s2[num_tc] = {"dcba", "asdf", "asdf",     "bsdf"};
     bool test_case_result[num_tc] = {true, true, false, false};
 
-    ch1 uut;
+    Ch1 uut;
     int failed = 0;
     for(int i = 0; i < num_tc; ++i)
     {

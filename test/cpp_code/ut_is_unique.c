@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     test_case["asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf;alksdjfa;lskdjfa;lsdkjfa;lksdjf;alskdjfasoidfhj;aoeijf;aslkfjds;lajfd;slfja;lsdnflasnfv;lajnv;lkanl;fjdsafioejowijfa;wiefja;slidfja;slkdjf;aa;slkdjfoewirpqoaiwuerpoqiwuerpoewjr;lj;sladkfjak;sldnvnsvna;sdjf;alsjdf;ljasdofpqoiwueproiuqweporiuqjwe;lkfjas;dlknvk,nczxvjnzxvjdlkflkahsdlfa;feiwurqpweoirupwoeifj;asdlkfja;sdfijpoiquweproiuqewproiuewjf;lkasjdf;alksjdf;lskjfvzmvnzxcmnvzx,.nvkldj;lfajsd;lkjfasjfdsfpewijrpqweurpoiewuriopewujrpfasdf"] = 
         false;
 
-    ch1 uut;
+    Ch1 uut;
     int failed = 0;
     for(map<string, bool>::iterator iter = test_case.begin(); iter != test_case.end(); ++iter)
     {

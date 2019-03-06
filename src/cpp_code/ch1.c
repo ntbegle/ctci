@@ -1,11 +1,12 @@
 
+#include <cstring>
 #include <unordered_map>
 #include <iostream>
 #include <ch1.h>
 
 // Uses an unordered map to determine if the given string
 // is unique or not.  O(n) time
-bool ch1::is_unique(const std::string &s)
+bool Ch1::is_unique(const std::string &s)
 {
     std::unordered_map<char, bool> char_map;
 
@@ -23,7 +24,7 @@ bool ch1::is_unique(const std::string &s)
 
 // Doesn't use any extra memory for determining if the given
 // string contains unique letters or not.  O(n^2) time.
-bool ch1::is_unique_in_place(const std::string &s)
+bool Ch1::is_unique_in_place(const std::string &s)
 {
     for(long unsigned int i = 0; i < s.length() - 1; ++i)
     {
@@ -41,7 +42,7 @@ bool ch1::is_unique_in_place(const std::string &s)
 
 //will use an unordered map to determine if string is permutation
 //O(n) time
-bool ch1::is_permutation(const std::string &s1, const std::string &s2)
+bool Ch1::is_permutation(const std::string &s1, const std::string &s2)
 {
     std::unordered_map<char, int> char_map;
 
@@ -82,4 +83,34 @@ bool ch1::is_permutation(const std::string &s1, const std::string &s2)
     }
 
     return true;
+}
+
+void Ch1::urlify(char s[], int buf_len)
+{
+    int num_spaces = 0;
+    int cnt = 0;
+    while(s[cnt] != 0)
+    {
+        if(s[cnt] == ' ')
+        {
+            ++num_spaces;
+        }
+        ++cnt;
+    }
+
+    if(num_spaces * 2 + cnt + 1 > buf_len)
+        return;
+
+    for(int i = cnt; i >= 0; --i)
+    {
+        if(s[i] == ' ')
+        {
+            --num_spaces;
+            memcpy((s + i) + num_spaces * 2, "%20", 3);
+        }
+        else
+        {
+            s[i + num_spaces * 2] = s[i];
+        }
+    }
 }
