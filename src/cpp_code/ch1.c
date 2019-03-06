@@ -114,3 +114,35 @@ void Ch1::urlify(char s[], int buf_len)
         }
     }
 }
+
+bool Ch1::is_palindrome_permutation(const std::string &s)
+{
+    const int MAX_CHARS = 26;
+    int char_cnt[MAX_CHARS] = {0};
+    int num_chars = 0;
+
+    for(long unsigned int i = 0; i < s.length(); ++i)
+    {
+        if(s[i] >= 65 && s[i] <= 90)
+        {
+            ++char_cnt[s[i] - 65];
+            ++num_chars;
+        }
+        else if(s[i] >= 97 && s[i] <= 122)
+        {
+            ++char_cnt[s[i] - 97];
+            ++num_chars;
+        }
+    }
+
+    int num_odd = 0;
+    for(int j = 0; j < MAX_CHARS; ++j)
+    {
+        if(char_cnt[j] % 2 == 1)
+        {
+            ++num_odd;
+        }
+    }
+
+    return (num_chars % 2 == num_odd);
+}
