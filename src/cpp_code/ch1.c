@@ -181,3 +181,47 @@ bool Ch1::is_one_away(std::string s1, std::string s2)
 
     return err_cnt <= 1;
 }
+        
+void Ch1::string_compression(char* s)
+{
+    const int len = strlen(s);
+    char copy[len];
+    strcpy(copy, s);
+
+    int c_idx = 0;
+
+    char last_let = copy[0];
+    int let_cnt = 1;
+    for(int i = 1; i < len; ++i)
+    {
+        if(last_let != copy[i])
+        {
+            s[c_idx++] = last_let;
+            c_idx += snprintf(s + c_idx, len - c_idx, "%d", let_cnt); 
+            last_let = copy[i];
+            let_cnt = 1;
+        }
+        else
+        {
+            ++let_cnt;
+        }
+
+        if(c_idx >= len)
+        {
+            strcpy(s, copy);
+            return;
+        }
+    }
+
+    s[c_idx++] = last_let;
+    c_idx += snprintf(s + c_idx, len - c_idx, "%d", let_cnt);
+    
+    if(c_idx >= len)
+    {
+        strcpy(s, copy);
+    }
+    else
+    {
+        s[c_idx] = 0;
+    }
+}
