@@ -146,3 +146,38 @@ bool Ch1::is_palindrome_permutation(const std::string &s)
 
     return (num_chars % 2 == num_odd);
 }
+
+bool Ch1::is_one_away(std::string s1, std::string s2)
+{
+    long unsigned int i1 = 0;
+    long unsigned int i2 = 0;
+    long unsigned int err_cnt = 0;
+
+    while(i1 < s1.length() && i2 < s2.length())
+    {
+        if(s1[i1] != s2[i2])
+        {
+            ++err_cnt;
+            if(s1.length() > s2.length())
+            {
+                ++i1;
+            }
+            else if(s2.length() > s1.length())
+            {
+                ++i2;
+            }
+            else
+            {
+                ++i1;
+                ++i2;
+            }
+        }
+        else
+        {
+            ++i1;
+            ++i2;
+        }
+    }
+
+    return err_cnt <= 1;
+}
