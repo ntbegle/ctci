@@ -225,3 +225,26 @@ void Ch1::string_compression(char* s)
         s[c_idx] = 0;
     }
 }
+
+void Ch1::rotate_matrix(int** matrix, int length)
+{
+    
+    for(int start = 0; start < length / 2; ++start)
+    {
+        int stop = length - 1 - start;
+        for(int i = 0; i < stop - start; ++i)
+        {
+            int temp = matrix[start][start + i];
+            matrix[start][start + i] = matrix[start + i][stop];
+            matrix[start + i][stop] = temp;
+
+            temp = matrix[stop][stop - i];
+            matrix[stop][stop - i] = matrix[stop - i][start];
+            matrix[stop - i][start] = temp;
+
+            temp = matrix[stop][stop - i];
+            matrix[stop][stop - i] = matrix[start][start + i];
+            matrix[start][start + i] = temp;
+        }
+    }
+}

@@ -14,6 +14,7 @@ class Ch1
         bool is_palindrome_permutation(const std::string &s);
         bool is_one_away(std::string s1, std::string s2);
         void string_compression(char* s);
+        void rotate_matrix(int** matrix, int length);
     private:
 };
 
