@@ -249,7 +249,7 @@ void Ch1::rotate_matrix(int** matrix, int length)
     }
 }
         
-void Ch1::zero_matrix(int ** matrix, int num_rows, int num_cols)
+void Ch1::zero_matrix(int** matrix, int num_rows, int num_cols)
 {
     int row_idx, col_idx;
     bool first_row_zero = false;
@@ -322,4 +322,9 @@ void Ch1::zero_matrix(int ** matrix, int num_rows, int num_cols)
             matrix[row_idx][0] = 0;
         }
     }
+}
+        
+bool Ch1::is_string_rotation(std::string s1, std::string s2)
+{
+    return s1.length() == s2.length() && (s2+s2).find(s1) != std::string::npos;
 }

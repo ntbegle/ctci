@@ -16,6 +16,7 @@ class Ch1
         void string_compression(char* s);
         void rotate_matrix(int** matrix, int length);
         void zero_matrix(int** matrix, int num_rows, int num_cols);
+        bool is_string_rotation(std::string s1, std::string s2);
     private:
 };
 
