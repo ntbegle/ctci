@@ -15,6 +15,7 @@ class Ch1
         bool is_one_away(std::string s1, std::string s2);
         void string_compression(char* s);
         void rotate_matrix(int** matrix, int length);
+        void zero_matrix(int** matrix, int num_rows, int num_cols);
     private:
 };
 

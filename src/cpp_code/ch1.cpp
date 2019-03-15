@@ -248,3 +248,78 @@ void Ch1::rotate_matrix(int** matrix, int length)
         }
     }
 }
+        
+void Ch1::zero_matrix(int ** matrix, int num_rows, int num_cols)
+{
+    int row_idx, col_idx;
+    bool first_row_zero = false;
+    bool first_col_zero = false;
+
+    for(col_idx = 0; col_idx < num_cols; ++col_idx)
+    {
+        if(matrix[0][col_idx] == 0)
+        {
+            first_row_zero = true;
+            break;
+        }
+    }
+
+    for(row_idx = 0; row_idx < num_rows; ++row_idx)
+    {
+        if(matrix[row_idx][0] == 0)
+        {
+            first_col_zero = true;
+            break;
+        }
+    }
+
+    for(row_idx = 1; row_idx < num_rows; ++row_idx)
+    {
+        for(col_idx = 1; col_idx < num_cols; ++col_idx)
+        {
+            if(matrix[row_idx][col_idx] == 0)
+            {
+                matrix[0][col_idx] = 0;
+                matrix[row_idx][0] = 0;
+            }
+        }
+    }
+
+    for(row_idx = 1; row_idx < num_rows; ++row_idx)
+    {
+        if(matrix[row_idx][0] == 0)
+        {
+            for(col_idx = 1; col_idx < num_cols; ++col_idx)
+            {
+                matrix[row_idx][col_idx] = 0;
+            }
+        }
+    }
+
+    for(col_idx = 1; col_idx < num_cols; ++col_idx)
+    {
+        if(matrix[0][col_idx] == 0)
+        {
+            for(row_idx = 1; row_idx < num_rows; ++row_idx)
+            {
+                matrix[row_idx][col_idx] = 0;
+            }
+        }
+    }
+
+    if(first_row_zero)
+    {
+        for(col_idx = 0; col_idx < num_cols; ++col_idx)
+        {
+            matrix[0][col_idx] = 0;
+        }
+    }
+
+    if(first_col_zero)
+    {
+        for(row_idx = 0; row_idx < num_rows; ++row_idx)
+        {
+            matrix[row_idx][0] = 0;
+        }
+    }
+}
